@@ -132,7 +132,7 @@ Potential future improvements include:
 **Mahi**
 Front-End Developer focused on **UX-driven interfaces**, **real-time validation**, and **practical tooling**
 
-* LinkedIn: [https://www.linkedin.com/in/YOUR-LINK-HERE](https://www.linkedin.com/in/YOUR-LINK-HERE)
+* LinkedIn: [https://www.linkedin.com/in/YOUR-LINK-HERE](https://www.linkedin.com/in/maedehsadatkhorasani/)
 
 ---
 

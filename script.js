@@ -19,8 +19,13 @@ const contentWarning = document.getElementById("recommend-content");
 const titleRemainingEl = document.getElementById("title-remaining");
 const summaryRemainingEl = document.getElementById("summary-remaining");
 const contentRemainingEl = document.getElementById("content-remaining");
+
 // error output
 const errorEl = document.getElementById("content-status");
+
+// threshold  of warning colors in realtime counter numbers
+const titleWarningthreshold = 10;
+const summaryWarningthreshold = 25;
 
 const previewHandler = () => {
   const titleContent = titleEl.value;
@@ -56,7 +61,7 @@ const validateMaxLength = () => {
     return false;
   } else return true;
 };
-const validateMinContent = () => {
+const isContentEnough = () => {
   const contentLength = wordCounter();
   if (contentLength < contentMinWords) {
     return false;
@@ -75,32 +80,46 @@ const wordCounter = () => {
 };
 
 const realtimecolorvalidation = () => {
+  updateTitleCounterColor();
+  updateSummaryCounterColor();
+  updateContentStatus();
+};
+
+// updating realtime title counter color
+const updateTitleCounterColor = () => {
+  const titlevalidation = titleMax - +titleEl.value.length;
+  // title ux counter colors
+  if (titleWarningthreshold >= titlevalidation && titlevalidation >= 0) {
+    titleRemainingEl.className = "text-warning";
+  } else if (titlevalidation < 0) {
+    titleRemainingEl.className = "text-danger";
+  } else {
+    titleRemainingEl.className = "text-muted";
+  }
+};
+
+// real time updating the color of summary counter
+const updateSummaryCounterColor = () => {
+  const summaryvalidation = summaryMax - +summaryEl.value.length;
+
+  // summary ux counter colors
+  if (summaryWarningthreshold >= summaryvalidation && summaryvalidation >= 0) {
+    summaryRemainingEl.className = "text-warning";
+  } else if (summaryvalidation < 0) {
+    summaryRemainingEl.className = "text-danger";
+  } else {
+    summaryRemainingEl.className = "text-muted";
+  }
+};
+
+const updateContentStatus = () => {
   // content ux counter colors
-  if (validateMinContent()) {
+  if (isContentEnough()) {
     contentWarning.className = "text-success ";
     contentWarning.textContent = "content length is perfect!";
   } else {
     contentWarning.className = " text-warning  ";
     contentWarning.textContent = "you'd better make your content stronger.";
-  }
-  const titlevalidation = titleMax + titleEl.value.length;
-
-  // title ux counter colors
-  if (titlevalidation <= 0) {
-    titleRemainingEl.className = "text-danger";
-  } else if (titlevalidation > 0 && titlevalidation <= 10) {
-    titleRemainingEl.className = "text-warning";
-  }
-
-  // summary ux counter colors
-  if (summaryMax - +summaryEl.value.length === 160) {
-    summaryRemainingEl.className = "text-warning";
-  } else if (summaryMax - +summaryEl.value.length > 140) {
-    summaryRemainingEl.className = "text-warning";
-  } else if (summaryMax - +summaryEl.value.length < 20) {
-    titleRemainingEl.className = "text-warning";
-  } else if (summaryMax - +summaryEl.value.length < 0) {
-    summaryRemainingEl.className = "text-danger";
   }
 };
 

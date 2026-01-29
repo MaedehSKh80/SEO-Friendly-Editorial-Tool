@@ -5,6 +5,8 @@ A lightweight editorial tool designed to simulate **real-world content validatio
 
 This project reflects hands-on experience with building **interactive writing tools**, similar to internal dashboards used in content teams, blogs, and SEO-focused platforms.
 
+🔗 Live Demo: https://maedehskh80.github.io/SEO-Friendly-Editorial-Tool/
+
 ---
 
 ## 🚀 Key Features

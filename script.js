@@ -76,7 +76,9 @@ const updateCounters = () => {
 };
 
 const wordCounter = () => {
-  return contentEl.value.trim().split(/\s+/).length;
+  const text = contentEl.value.trim();
+  if (!text) return 0;
+  return text.split(/\s+/).length;
 };
 
 const realtimecolorvalidation = () => {
